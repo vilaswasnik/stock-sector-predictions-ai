@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><title>Debug Test</title></head><body style="font-family:Arial;padding:20px;">
+<h1>Debug Test Page</h1>
+<button onclick="test1()" style="padding:10px;margin:5px;">Test 1: Alert</button>
+<button onclick="test2()" style="padding:10px;margin:5px;">Test 2: Fetch API</button>
+<button onclick="test3()" style="padding:10px;margin:5px;">Test 3: Full Load</button>
+<div id="output" style="margin-top:20px;padding:10px;background:#f0f0f0;"></div>
+<script>
+console.log('JavaScript loaded successfully');
+function test1() {
+    alert('Button clicked! JavaScript is working.');
+}
+async function test2() {
+    document.getElementById('output').innerHTML = 'Fetching...';
+    try {
+        const resp = await fetch('/api/analysis?period=30d');
+        console.log('Response status:', resp.status);
+        const data = await resp.json();
+        document.getElementById('output').innerHTML = 'Success! Top sector: ' + data.top_sectors[0].sector;
+    } catch(e) {
+        document.getElementById('output').innerHTML = 'Error: ' + e.message;
+        console.error(e);
+    }
+}
+async function test3() {
+    document.getElementById('output').innerHTML = 'Loading full data...';
+    try {
+        const resp = await fetch('/api/analysis?period=30d');
+        const data = await resp.json();
+        let html = '<h3>Top 5 Sectors:</h3>';
+        data.top_sectors.forEach((s,i) => {
+            html += '<p>' + (i+1) + '. ' + s.sector + ' - AI Score: ' + s.ai_score + '</p>';
+        });
+        document.getElementById('output').innerHTML = html;
+    } catch(e) {
+        document.getElementById('output').innerHTML = 'Error: ' + e.message;
+        console.error(e);
+    }
+}
+</script>
+</body></html>

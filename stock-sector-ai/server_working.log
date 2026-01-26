@@ -1,0 +1,29 @@
+nohup: ignoring input
+Starting simplified server on port 5000...
+ * Serving Flask app 'app_working'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.244.138:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [25/Jan/2026 17:35:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:29] "GET /api/analysis?period=30d&t=1769380521867 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:37] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:48] "GET /api/analysis?period=6m&t=1769380540647 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:51] "GET /api/analysis?period=1y&t=1769380543820 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:54] "GET /api/analysis?period=1y&t=1769380546526 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:56] "GET /api/analysis?period=2m&t=1769380548857 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:35:59] "GET /api/analysis?period=3m&t=1769380552020 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:36:02] "GET /api/analysis?period=30d&t=1769380555042 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:36:17] "GET /api/analysis?period=30d&t=1769380569842 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:51] "GET /api/analysis?period=2m&t=1769380663753 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:52] "GET /api/analysis?period=2m&t=1769380664486 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:52] "GET /api/analysis?period=2m&t=1769380664706 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:55] "GET /api/analysis?period=3m&t=1769380668450 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:57] "GET /api/analysis?period=3m&t=1769380670241 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:37:59] "GET /api/analysis?period=3m&t=1769380671490 HTTP/1.1" 200 -
+127.0.0.1 - - [25/Jan/2026 17:38:02] "GET /api/analysis?period=6m&t=1769380674890 HTTP/1.1" 200 -
+192.168.244.1 - - [25/Jan/2026 17:38:10] "GET / HTTP/1.1" 200 -
+192.168.244.1 - - [25/Jan/2026 17:38:15] "GET /api/analysis?period=2m&t=1769380687594 HTTP/1.1" 200 -

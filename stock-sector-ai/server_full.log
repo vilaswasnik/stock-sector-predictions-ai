@@ -1,0 +1,13 @@
+nohup: ignoring input
+Starting full server with all 16 sectors on port 5000...
+ * Serving Flask app 'app_full'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.244.138:5000
+[33mPress CTRL+C to quit[0m
+192.168.244.1 - - [25/Jan/2026 17:40:23] "GET / HTTP/1.1" 200 -
+192.168.244.1 - - [25/Jan/2026 17:40:25] "GET /api/analysis?period=30d&t=1769380817936 HTTP/1.1" 200 -
+192.168.244.1 - - [25/Jan/2026 17:41:40] "GET /api/analysis?period=6m&t=1769380893214 HTTP/1.1" 200 -
+192.168.244.1 - - [25/Jan/2026 17:41:48] "GET /api/analysis?period=3m&t=1769380900651 HTTP/1.1" 200 -
