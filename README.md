@@ -1,310 +1,97 @@
 # 🚀 Stock Sector Predictions AI
 
-**AI-powered stock sector analysis with real-time market data and news sentiment**
+**AI-powered stock sector analysis with real-time market data and news sentiment.** A Flask API scores and ranks the 11 major US market sectors, blends technical indicators with headline sentiment, and serves the result to a web dashboard — so you can see at a glance which sectors are leading, which are lagging, and whether the market reads bullish, bearish, or neutral.
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
----
+> **Not financial advice.** This is an analysis and learning tool; sector scores are model output, not recommendations.
 
-## 📚 Quick Links
+## 📚 Quick links
 
 | Document | Description |
-|----------|-------------|
-| [⚡ QUICK_START.md](QUICK_START.md) | **Get started in 2 minutes** - Essential commands and URLs |
-| [⌨️ SHORTCUTS.md](SHORTCUTS.md) | **Cheat sheet** - All commands, shortcuts, and tips |
-| [📖 SETUP_GUIDE.md](SETUP_GUIDE.md) | Detailed installation and configuration guide |
-| [📰 NEWS_SENTIMENT_GUIDE.md](stock-sector-ai/NEWS_SENTIMENT_GUIDE.md) | News sentiment analysis documentation |
+|---|---|
+| [⚡ QUICK_START.md](QUICK_START.md) | Get started in 2 minutes — essential commands and URLs |
+| [⌨️ SHORTCUTS.md](SHORTCUTS.md) | Cheat sheet — commands, shortcuts, and tips |
+| [📖 SETUP_GUIDE.md](stock-sector-ai/SETUP_GUIDE.md) | Detailed installation and configuration |
+| [📰 NEWS_SENTIMENT_GUIDE.md](stock-sector-ai/NEWS_SENTIMENT_GUIDE.md) | How news sentiment analysis works |
 | [📱 Application README](stock-sector-ai/README.md) | Full application features and architecture |
-
----
-
-## 🎯 One-Command Start
-
-```bash
-cd stock-sector-ai && source venv/bin/activate && cd api && python app.py
-```
-
-Then open: **http://localhost:8000/dashboard**
-
----
 
 ## ✨ Features
 
-- 🤖 **AI-Powered Predictions** - Machine learning analyzes 11 major market sectors
-- 📊 **Real-Time Data** - Integration with Alpha Vantage for live market data
-- 📰 **News Sentiment Analysis** - NewsAPI integration for enhanced predictions
-- 📈 **Technical Analysis** - RSI, MACD, Bollinger Bands, and more
-- 🎨 **Beautiful Dashboard** - Interactive web interface with real-time updates
-- 💾 **Demo Mode** - Fallback data when API limits reached
-- 🔄 **Auto-Refresh** - Dashboard updates automatically
+- **Real-time sector analysis** — live data for 11 sector ETFs: Technology (XLK), Healthcare (XLV), Financials (XLF), Energy (XLE), Consumer Discretionary (XLY), Industrials (XLI), Consumer Staples (XLP), Utilities (XLU), Real Estate (XLRE), Materials (XLB), Communication Services (XLC)
+- **Weighted scoring engine** — momentum, trend, and volatility combined into a single comparable score per sector
+- **News sentiment** — NewsAPI headlines per sector, sentiment-scored and blended into the ranking
+- **Market regime detection** — bullish / bearish / neutral classification with a confidence level
+- **Dashboard** — rankings, trend indicators, leading vs lagging sectors, and sentiment scores in one page
+- **Demo mode** — if the data APIs are unavailable or rate-limited, the app falls back to built-in demo data automatically
 
----
+## 🚀 Quick start
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Python 3.12+
-- Virtual environment (included)
-- API Keys (free tier available)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/vilaswasnik/stock-sector-predictions-ai.git
-   cd stock-sector-predictions-ai/stock-sector-ai
-   ```
-
-2. **Activate virtual environment**
-   ```bash
-   source venv/bin/activate
-   ```
-
-3. **Configure API keys** (optional - app works in demo mode)
-   ```bash
-   # Edit .env file
-   nano .env
-   
-   # Add your keys:
-   ALPHAVANTAGE_API_KEY=your_key_here
-   NEWSAPI_KEY=your_key_here
-   ```
-
-4. **Start the application**
-   ```bash
-   cd api
-   python app.py
-   ```
-
-5. **Open dashboard**
-   - Navigate to: http://localhost:8000/dashboard
-   - Or run: `$BROWSER http://localhost:8000/dashboard`
-
----
-
-## 🎮 Usage
-
-### API Endpoints
+Prerequisites: Python 3.12+. API keys are optional (demo mode works without them); for live data get free-tier keys from [Alpha Vantage](https://www.alphavantage.co/support/#api-key) and [NewsAPI](https://newsapi.org/register).
 
 ```bash
-# Check status
-curl http://localhost:8000/api/status
-
-# Get full analysis
-curl http://localhost:8000/api/analysis
-
-# Get predictions
-curl http://localhost:8000/api/predict
-
-# List all sectors
-curl http://localhost:8000/api/sectors
+git clone https://github.com/vilaswasnik/stock-sector-predictions-ai.git
+cd stock-sector-predictions-ai/stock-sector-ai
+cp .env.example .env        # add ALPHAVANTAGE_API_KEY and NEWSAPI_KEY for live data
+cd ..
+bash stock-sector-ai/run.sh # creates a venv, installs dependencies, starts the API
 ```
 
-### Dashboard Features
-- **Real-time sector rankings** with AI scores
-- **Market trend indicators** (Bullish/Bearish/Neutral)
-- **Leading vs Lagging sectors** identification
-- **Technical indicators** visualization
-- **News sentiment scores** for each sector
-- **AI-generated insights** and recommendations
-
----
-
-## 📊 Tracked Sectors
-
-| Sector | ETF Symbol | Category |
-|--------|-----------|----------|
-| Technology | XLK | Growth |
-| Healthcare | XLV | Defensive |
-| Financials | XLF | Cyclical |
-| Energy | XLE | Cyclical |
-| Consumer Discretionary | XLY | Cyclical |
-| Industrials | XLI | Cyclical |
-| Consumer Staples | XLP | Defensive |
-| Utilities | XLU | Defensive |
-| Real Estate | XLRE | Interest-Sensitive |
-| Materials | XLB | Cyclical |
-| Communication Services | XLC | Growth |
-
----
-
-## 🔧 Configuration
-
-### API Keys (Free Tier)
-
-**Alpha Vantage** (Market Data)
-- Sign up: https://www.alphavantage.co/support/#api-key
-- Limit: 25 requests/day, 5 requests/minute
-- Free forever
-
-**NewsAPI** (Sentiment Analysis)
-- Sign up: https://newsapi.org/register
-- Limit: 100 requests/day
-- Free for development
-
-### Environment Variables
+`run.sh` starts the Flask API (`api/app.py`) on port 8000. Then:
 
 ```bash
-# .env file
-ALPHAVANTAGE_API_KEY=your_alpha_vantage_key
-NEWSAPI_KEY=your_newsapi_key
-PORT=8000
-DEBUG=True
+curl http://localhost:8000/api/status     # health/status
+curl http://localhost:8000/api/sectors    # list tracked sectors
+curl http://localhost:8000/api/analysis   # full analysis
+curl http://localhost:8000/api/predict    # predictions
 ```
 
----
+Open `stock-sector-ai/frontend/index.html` in a browser for the dashboard.
 
-## 🏗️ Project Structure
+> **⚠️ Never commit your `.env`.** It holds real API keys, it is listed in `.gitignore` for exactly that reason, and keys that reach a public repo must be rotated.
 
-```
+## 🧠 How it works
+
+1. **Data collection** — historical prices and volume from Yahoo Finance (yfinance), with Alpha Vantage as an alternate fetcher.
+2. **Technical scoring (85%)** — momentum/20-day (30%), short-term/5-day trend (25%), medium-term/60-day (20%), recent/1-day performance (15%), minus a volatility penalty (10%).
+3. **News sentiment (15%)** — sector headlines from NewsAPI are sentiment-scored; positive news lifts a sector's score, negative news lowers it.
+4. **Prediction** — sectors are ranked; the spread between leaders and laggards plus score distribution drives the bullish/bearish/neutral call and its confidence.
+
+## 🏗️ Project structure
+
+```text
 stock-sector-predictions-ai/
-├── stock-sector-ai/
-│   ├── api/
-│   │   └── app.py              # Flask application
-│   ├── models/
-│   │   ├── sector_predictor.py      # Original AI model
-│   │   └── enhanced_predictor.py    # With news sentiment
-│   ├── utils/
-│   │   ├── sector_data.py           # Yahoo Finance data
-│   │   ├── alphavantage_fetcher.py  # Alpha Vantage API
-│   │   ├── news_sentiment.py        # NewsAPI integration
-│   │   └── demo_data.py             # Fallback demo data
-│   ├── frontend/
-│   │   └── index.html               # Dashboard UI
-│   ├── .env                         # Configuration
-│   ├── requirements.txt             # Dependencies
-│   └── venv/                        # Virtual environment
-├── QUICK_START.md                   # Quick reference guide
-├── SHORTCUTS.md                     # Commands cheat sheet
-├── SETUP_GUIDE.md                   # Detailed setup
-└── README.md                        # This file
+├── README.md, QUICK_START.md, SHORTCUTS.md, DOCUMENTATION_SUMMARY.md
+└── stock-sector-ai/
+    ├── run.sh                 # one-command start (venv + install + serve)
+    ├── requirements.txt
+    ├── .env.example           # ALPHAVANTAGE_API_KEY, NEWSAPI_KEY (copy to .env)
+    ├── api/
+    │   └── app.py             # Flask API — THE entry point (other app_*.py are experiments)
+    ├── models/
+    │   ├── sector_predictor.py    # technical scoring model
+    │   └── enhanced_predictor.py  # scoring + news sentiment
+    ├── utils/
+    │   ├── sector_data.py         # Yahoo Finance fetcher
+    │   ├── alphavantage_fetcher.py
+    │   ├── news_sentiment.py      # NewsAPI sentiment
+    │   ├── sector_stocks.py, demo_data.py
+    └── frontend/
+        └── index.html         # dashboard
 ```
 
----
+## 🔧 Troubleshooting
 
-## 🧠 How It Works
+- **Port 8000 already in use** — `lsof -ti :8000 | xargs kill -9`, then restart.
+- **Module not found** — activate the venv (`source stock-sector-ai/venv/bin/activate`) and `pip install -r stock-sector-ai/requirements.txt`.
+- **API rate limits** — the app switches to demo data automatically; wait for the quota to reset for live analysis.
 
-### AI Scoring Algorithm
+## Contributing
 
-The AI model calculates sector scores using weighted factors:
+See `CONTRIBUTING.md`.
 
-1. **Technical Analysis (85%)**
-   - Momentum (30%) - 20-day price performance
-   - Short-term (25%) - 5-day trend
-   - Medium-term (20%) - 60-day performance
-   - Recent Performance (15%) - 1-day returns
-   - Volatility Penalty (10%) - Risk adjustment
+## License
 
-2. **News Sentiment (15%)**
-   - Positive news → Score boost
-   - Negative news → Score reduction
-   - Neutral news → No impact
-
-### Prediction Logic
-
-- **Bullish Market**: Top 3 sectors strong, bottom 3 weak
-- **Bearish Market**: All sectors declining
-- **Neutral Market**: Mixed signals across sectors
-- **Confidence**: Based on score distribution and volatility
-
----
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-**Port 8000 already in use**
-```bash
-lsof -ti :8000 | xargs kill -9
-```
-
-**Module not found errors**
-```bash
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-**API rate limits exceeded**
-- App automatically switches to demo mode
-- Wait 24 hours for quota reset
-- Or use demo mode: comment out API keys in .env
-
-**Dashboard not loading**
-```bash
-# Check if server is running
-ps aux | grep "python app.py"
-
-# Check server logs
-# Look for errors in terminal output
-```
-
----
-
-## 📈 Performance
-
-- **Startup Time**: < 5 seconds
-- **API Response**: < 1 second (with cache)
-- **Dashboard Load**: < 2 seconds
-- **Memory Usage**: ~50-100 MB
-- **CPU Usage**: < 5% idle, < 20% during analysis
-
----
-
-## 🤝 Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Alpha Vantage** - Market data API
-- **NewsAPI** - News sentiment data
-- **Yahoo Finance** - Fallback data source
-- **Flask** - Web framework
-- **scikit-learn** - Machine learning
-- **pandas** - Data analysis
-- **TextBlob** - Sentiment analysis
-
----
-
-## 📞 Support
-
-- **Documentation**: See Quick Start and Setup guides
-- **Issues**: [GitHub Issues](https://github.com/vilaswasnik/stock-sector-predictions-ai/issues)
-- **Questions**: Open a discussion on GitHub
-
----
-
-## 🎯 Roadmap
-
-- [ ] WebSocket support for real-time updates
-- [ ] Additional data providers (Finnhub, Twelve Data)
-- [ ] Historical backtesting
-- [ ] Email/SMS alerts
-- [ ] Mobile app
-- [ ] Docker containerization
-- [ ] Advanced charting
-- [ ] Portfolio tracking
-
----
-
-**⭐ Star this repo if you find it useful!**
-
-**Last Updated**: January 26, 2026  
-**Version**: 1.0  
-**Status**: Production Ready ✅
+MIT — see `LICENSE`.
